@@ -1,44 +1,44 @@
 <?php
-
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use Notifiable;
-
     public function updateColor($color)
     {
-      $this->update("favorite_color", $color);
-    };
-
+      $this->update(['favoritecolor' => $color]);
+    }
     public function friends()
   	{
-  		return $this->belongsToMany('User', 'friendships', 'user_id', 'friend_id');
-  	};
-
-    // to be used for test endpoint
-    public function addFriend(User $user)
-  	{
-  		$this->friends()->attach($user->id);
+  		return $this->belongsToMany('App\User', 'friendships', 'user_id', 'friend_id');
   	}
-
-    public function removeFriend(User $user)
+    //only use this function for TEST route
+    public function addFriend($user)
+  	{
+      $friends = $this->friends();
+      //don't allow people to be friends with themselves;
+      if($user->id !== $this->id ){
+        try{
+  		    $friends->attach($user->id);
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+          }
+        }
+  	}
+  	public function removeFriend($user)
   	{
   		$this->friends()->detach($user->id);
-  	};
+  	}
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'favoritecolor'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *

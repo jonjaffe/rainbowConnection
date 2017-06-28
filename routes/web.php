@@ -11,9 +11,26 @@
 |
 */
 
+function formatJSON($data, $type) {
+  $json = array('data' => array());
+  foreach($data as $dataItem):
+    array_push($json['data'], array( 'type' => $type,
+                                   'id' => $dataItem->id,
+                                   'attributes' => $dataItem));
+  endforeach;
+  return $json;
+}
+
+Route::get('/testdata',  function(Illuminate\Http\Request $request){
+  //pull userCount from queryString
+  $userCount = (int)$request->query('userCount');
+  Artisan::call('db:seedCustom', ['userCount' => $userCount]);
+});
+
 Route::get('/users', function () {
     $users = DB::table('users')->get();
-    return $users;
+    return formatJSON($users, 'users');
+    // return array('data' => array('type' => 'users', 'id' => 1, 'attributes' => $users));
     // return view('welcome', compact('tasks'));
 });
 // Route::get('/', 'UserController@index');
@@ -27,7 +44,7 @@ Route::get('/{userId}', function($id) {
 
 Route::patch('/{userId}/{color}', function($userId, $color){
   $user = DB::table('users')->find($userId);
-  $user->favorite_color = $color;
+  $user->favoritecolor = $color;
   $user->save();
   // $user = DB::table('users')->find($userId);
   // $user->updateColor($color);

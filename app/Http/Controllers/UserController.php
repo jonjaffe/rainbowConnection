@@ -13,7 +13,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
      public function index() {
-       $users = User::select('id', 'firstname', 'lastname', 'favorite_color')->get();
+       $users = User::select('id', 'firstname', 'lastname', 'favoritecolor')->get();
        return $users;
    }
 

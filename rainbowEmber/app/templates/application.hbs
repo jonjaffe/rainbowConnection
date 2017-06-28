@@ -1,4 +1,9 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{!-- Feel free to remove this! --}}
-Ember sucks
-{{outlet}}
+<h1> Rainbow Connection </h1>
+<h3> Everybody has a favorite color.</h3>
+
+
+<ul>
+  {{#each model as |user|}}
+    <li>{{user.name}}'s favorite color is {{user.color}}</li>
+    {{/each}}
+</ul>
