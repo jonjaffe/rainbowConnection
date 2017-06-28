@@ -23,6 +23,9 @@ module.exports = function(environment) {
     }
   };
 
+  // ENV.apiBaseUrl = 'http://rainbowconnection.dev';
+
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
