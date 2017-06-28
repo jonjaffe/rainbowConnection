@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = DB::table('users')->get();
+    return $users;
+    // return view('welcome', compact('tasks'));
+});
+
+Route::get('/{userId}', function($id) {
+  $user = DB::table('users')->find($id);
+  dd($user);
+  return $user;
 });
