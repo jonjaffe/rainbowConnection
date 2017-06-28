@@ -10,7 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function updateColor($color) {
+    public function updateColor($color)
+    {
       $this->update("favorite_color", $color);
     };
 
@@ -18,6 +19,12 @@ class User extends Authenticatable
   	{
   		return $this->belongsToMany('User', 'friendships', 'user_id', 'friend_id');
   	};
+
+    // to be used for test endpoint
+    public function addFriend(User $user)
+  	{
+  		$this->friends()->attach($user->id);
+  	}
 
     public function removeFriend(User $user)
   	{
