@@ -21,6 +21,16 @@ function formatJSON($data, $type) {
   return $json;
 }
 
+function formatUserJSON($data, $type) {
+  $json = array('data' => array());
+  foreach($data as $dataItem):
+    $json['data'] = array( 'type' => $type,
+                                   'id' => $dataItem->id,
+                                   'attributes' => $dataItem);
+  endforeach;
+  return $json;
+}
+
 Route::get('/testdata',  function(Illuminate\Http\Request $request){
   //pull userCount from queryString
   $userCount = (int)$request->query('userCount');
@@ -49,11 +59,17 @@ Route::get('/users', function () {
 // // Route::get('/', 'UserController@index');
 
 
+// Route::get('/users/{userid}', function ($userid) {
+//     $user = App\User::find($userid);
+//     //fetch friends
+//     $friends = $user->friends;
+//     return $user;
+// });
 Route::get('/users/{userid}', function ($userid) {
     $user = App\User::find($userid);
     //fetch friends
     $friends = $user->friends;
-    return $user;
+    return formatUserJSON(array($user), 'user');
 });
 
 Route::patch('/{userId}/{color}', function($userId, $color){

@@ -1,0 +1,21 @@
+<h1 class = "header-text"> Rainbow Connection </h1>
+<h3 class= "subtitle"> {{model.name}} has a favorite color. It is <span class= {{model.favoritecolor}}> {{model.favoritecolor}} </span></h3>
+
+
+  <table align="center">
+    <tr class="index-row">
+      <th class="index-cell" >Name</th>
+    </tr>
+
+    {{#each model.friends as |friend|}}
+      <tr class="index-row">
+        <td class="index-cell"> {{friend.name}} </td>
+        <td class="index-cell"><button type="button" {{action 'deleteFriend' model.id friend.id}}>
+           Remove</button> </td>
+      </tr>
+    {{/each}}
+  </table>
+
+  {{#link-to 'index' }}
+    <p class="home-link">Go back to the home page</p>
+  {{/link-to}}
