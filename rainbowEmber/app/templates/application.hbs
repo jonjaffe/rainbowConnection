@@ -1,14 +1,14 @@
-<h1> Rainbow Connection </h1>
+<h1 class='header-text'> Rainbow Connection </h1>
 <h3> Everybody has a favorite color.</h3>
 
 
-<ul>
+<ul class='index-ul'>
   {{#each model as |user|}}
-    <li>{{user.name}}'s favorite color is <span class={{user.favoritecolor}}>{{user.favoritecolor}}</span></li>
-    <li> {{user.name}}'s friends are
+    <li><span class='index-li-span'>{{user.name}}</span>
+     <span class='index-li-span'>Favorite Color: <span class={{user.favoritecolor}}>{{user.favoritecolor}}</span> <br />Friends:
               {{#each user.friends as |friend|}}
                 {{friend.name}}
-              {{/each}}
+              {{/each}}</span>
     </li>
     {{/each}}
 </ul>
