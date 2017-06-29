@@ -67,3 +67,7 @@ class UsersTableSeeder extends Seeder
       endforeach;
     }
 }
+```
+#### Future Direction for the Project
+- Implement ability to for a user to change their favorite color on the user show page, for those of the more vacillating persuasion.
+- Implement infinite pagination. The ember-infinity library required some refactoring of the Laravel route to accept additional data, so this should be relatively straightforward.
