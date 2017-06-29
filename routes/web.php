@@ -27,13 +27,26 @@ Route::get('/testdata',  function(Illuminate\Http\Request $request){
   Artisan::call('db:seedCustom', ['userCount' => $userCount]);
 });
 
+//fetches all Users from the users table and returns each user in JSON
 Route::get('/users', function () {
-    $users = DB::table('users')->get();
+    $users = App\User::all();
+    //grab all friends from friendship table
+    foreach($users as $user):
+      $friends = $user->friends;
+    endforeach;
     return formatJSON($users, 'users');
-    // return array('data' => array('type' => 'users', 'id' => 1, 'attributes' => $users));
-    // return view('welcome', compact('tasks'));
 });
-// Route::get('/', 'UserController@index');
+
+// Route::get('/users', function () {
+//     $users = DB::table('users')->get();
+//     foreach($users as $user):
+//       $friends = $user->friends;
+//     endforeach;
+//     return formatJSON($users, 'users');
+//     // return array('data' => array('type' => 'users', 'id' => 1, 'attributes' => $users));
+//     // return view('welcome', compact('tasks'));
+// });
+// // Route::get('/', 'UserController@index');
 
 
 Route::get('/{userId}', function($id) {
