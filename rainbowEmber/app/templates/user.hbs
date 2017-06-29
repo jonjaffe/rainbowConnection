@@ -4,12 +4,12 @@
 <h3>{{model.name}}'s favorite color is <span class={{model.favoritecolor}}>{{model.favoritecolor}}</span></h3>
 <ul class='show-ul'>
   {{#each model.friends as |friend|}}
-      <li>
+      <li class='show-li'>
         {{#link-to 'user' friend.id}}
           {{friend.name}}
         {{/link-to}}
       </li>
-      <li>
+      <li class='show-li'>
         <button type="button" {{action 'deleteFriend' model.id friend.id}}>
            Remove</button>
       </li>

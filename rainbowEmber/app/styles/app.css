@@ -59,12 +59,16 @@
   color-stop(1.00, violet));
 }
 
-li {
+.index-li {
   list-style: none;
   border: 1px solid grey;
   border-radius: 3px;
   display: flex;
   justify-content: space-between;
+}
+
+.show-li {
+  list-style: none;
 }
 
 .index-li-span {
