@@ -71,8 +71,14 @@ li {
   width: 50%;
 }
 
-.index-ul {
+.index-ul, {
   display: flex;
   flex-direction: column;
+  padding-left: 0;
+}
+
+.show-ul {
+  display: flex;
+  justify-content: space-between;
   padding-left: 0;
 }
