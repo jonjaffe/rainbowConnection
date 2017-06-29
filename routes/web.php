@@ -49,10 +49,11 @@ Route::get('/users', function () {
 // // Route::get('/', 'UserController@index');
 
 
-Route::get('/{userId}', function($id) {
-  $user = DB::table('users')->find($id);
-  dd($user);
-  return $user;
+Route::get('/users/{userid}', function ($userid) {
+    $user = App\User::find($userid);
+    //fetch friends
+    $friends = $user->friends;
+    return $user;
 });
 
 Route::patch('/{userId}/{color}', function($userId, $color){
