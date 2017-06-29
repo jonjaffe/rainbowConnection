@@ -1,0 +1,17 @@
+{{#link-to 'index' }}
+  <h1 class='header-text'> Rainbow Connection </h1>
+{{/link-to}}
+<h3>{{model.name}}'s favorite color is <span class={{model.favoritecolor}}>{{model.favoritecolor}}</span></h3>
+<ul class='show-ul'>
+  {{#each model.friends as |friend|}}
+      <li>
+        {{#link-to 'user' friend.id}}
+          {{friend.name}}
+        {{/link-to}}
+      </li>
+      <li>
+        <button type="button" {{action 'deleteFriend' model.id friend.id}}>
+           Remove</button>
+      </li>
+    {{/each}}
+</ul>

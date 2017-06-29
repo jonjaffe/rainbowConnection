@@ -81,6 +81,12 @@ Route::patch('/{userId}/{color}', function($userId, $color){
   return $user;
 });
 
+Route::get('/user/{userid}/{friendid}', function($userid, $friendid) {
+  $user = App\User::find($userid);
+  $user->removeFriend($friendid);
+  return $user;
+});
+
 Route::delete('/{userId}/{friendId}', function($userId, $friendId){
   $user = DB::table('users')->find($userId);
   $user->removeFriend($friendId);

@@ -3,10 +3,14 @@
 
 <ul class='index-ul'>
   {{#each model as |user|}}
-    <li><span class='index-li-span'>{{user.name}}</span>
+    <li><span class='index-li-span'> {{#link-to 'user' user.id}}
+        {{user.name}}
+      {{/link-to}}</span>
      <span class='index-li-span'>Favorite Color: <span class={{user.favoritecolor}}>{{user.favoritecolor}}</span> <br />Friends:
               {{#each user.friends as |friend|}}
+              {{#link-to 'user' friend.id}}
                 {{friend.name}}
+              {{/link-to}}
               {{/each}}</span>
     </li>
     {{/each}}
